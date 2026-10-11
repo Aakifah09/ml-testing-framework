@@ -1,0 +1,7 @@
+numpy
+pandas
+scikit-learn
+pytest
+# optional
+torch    # enables the torch_mlp model (PyTorchAdapter)
+# mlflow # enables the "mlflow" observer

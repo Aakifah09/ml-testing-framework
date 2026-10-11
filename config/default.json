@@ -1,0 +1,90 @@
+{
+  "seed": 42,
+  "output_dir": "results",
+  "modules": [
+    "test_generation",
+    "defect_prediction",
+    "test_oracle"
+  ],
+  "decorators": [
+    "logging",
+    "timing"
+  ],
+  "observers": [
+    "console",
+    "report"
+  ],
+  "test_generation": {
+    "programs": [
+      "triangle",
+      "days_in_month",
+      "gcd",
+      "insertion_sort"
+    ],
+    "strategies": [
+      "random",
+      "search",
+      "ml"
+    ],
+    "budget": 200,
+    "strategy_params": {
+      "ml": {
+        "model_type": "decision_tree"
+      }
+    },
+    "write_pytest_files": true,
+    "show_examples": 3
+  },
+  "defect_prediction": {
+    "data_source": "synthetic",
+    "loader_params": {
+      "n_samples": 2000
+    },
+    "test_size": 0.3,
+    "models": [
+      "decision_tree",
+      "svm",
+      "random_forest",
+      "neural_network"
+    ],
+    "ensemble": {
+      "enabled": true,
+      "members": null,
+      "voting": "soft",
+      "weights": null
+    },
+    "save_models": false,
+    "show_examples": 3
+  },
+  "test_oracle": {
+    "programs": [
+      "triangle",
+      "days_in_month",
+      "gcd",
+      "insertion_sort"
+    ],
+    "strategies": [
+      "rule",
+      "metamorphic",
+      "ml",
+      "hybrid"
+    ],
+    "n_inputs": 60,
+    "input_strategy": "search",
+    "train_fraction": 0.5,
+    "show_examples": 3,
+    "strategy_params": {
+      "ml": {
+        "model_type": "random_forest"
+      },
+      "hybrid": {
+        "members": [
+          "rule",
+          "metamorphic",
+          "ml"
+        ],
+        "voting": "majority"
+      }
+    }
+  }
+}

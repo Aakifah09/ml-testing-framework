@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mltest"
+version = "0.1.0"
+description = "Design-pattern-based framework for ML in automated software testing"
+requires-python = ">=3.10"
+dependencies = ["numpy", "pandas", "scikit-learn"]
+
+[project.optional-dependencies]
+torch = ["torch"]
+mlflow = ["mlflow"]
+dev = ["pytest"]
+
+[project.scripts]
+mltest = "mltest.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["mltest*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
